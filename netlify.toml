@@ -1,0 +1,23 @@
+# Pengaturan Netlify untuk Portal Warga RT NOLPITU 007/09
+# Taruh di akar repo (sejajar dengan package.json).
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Single Page App: semua alamat diarahkan ke index.html
+# supaya refresh / link langsung tidak error 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
